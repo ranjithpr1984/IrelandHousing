@@ -96,11 +96,11 @@ display(propertyAvgTownDF)
 
 # DBTITLE 1,Add current month data
 propertyAvgTownThisMonthDF <- as.data.frame(sql("select county,town,year(current_timestamp())||'-'||lpad(month(current_timestamp()),2,'0') saleMonth,avg(price) price from property_price_avg group by county,town"))
-thisMonth <- thisMonth <- format(Sys.Date(), "%Y-%m")
+thisMonth <- format(Sys.Date(), "%Y-%m")
 propertyAvgTownThisMonthDF2 <- subset(propertyAvgTownDF, saleMonth == thisMonth)
 
 if(nrow(propertyAvgTownThisMonthDF2) > 0 ) {
-  tmp <- rbind(tmp,propertyAvgTownThisMonthDF,propertyAvgTownThisMonthDF2)
+  tmp <- rbind(propertyAvgTownThisMonthDF,propertyAvgTownThisMonthDF2)
   propertyAvgTownThisMonthDF <- aggregate(x=tmp$price,by=list(county = tmp$county, town = tmp$town, saleMonth = tmp$saleMonth),FUN='mean')
   colnames(propertyAvgTownThisMonthDF)[4] <- 'price'
 }

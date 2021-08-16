@@ -140,3 +140,8 @@ propertyDataSDF.write.mode("overwrite").partitionBy("county").saveAsTable("prope
 # COMMAND ----------
 
 # MAGIC %sql select * from property_price_register
+
+# COMMAND ----------
+
+# MAGIC %sql select min(SaleDate) min_sale_date, max(SaleDate) max_sale_date, count(1) Count
+# MAGIC from property_price_register

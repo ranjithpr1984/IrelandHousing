@@ -123,6 +123,7 @@ CREATE TABLE IF NOT EXISTS `default`.`property_price_register_final` (
 
 -- COMMAND ----------
 
+-- DBTITLE 1,PROPERTY_RENT_PRED
 CREATE TABLE IF NOT EXISTS `default`.`property_price_pred` (
   `county` STRING,
   `saleMonth` STRING,

@@ -2,6 +2,7 @@
 from bs4 import BeautifulSoup
 import urllib.request
 import re
+import time
 from pyspark.sql.types import StructType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StringType
@@ -114,3 +115,4 @@ for county in counties:
 
   propertyDataDF = spark.createDataFrame(propertyData, schema)
   propertyDataDF.write.mode("append").partitionBy("county").saveAsTable("default.property_price_data")
+  time.sleep(10)

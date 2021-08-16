@@ -43,18 +43,6 @@ Towns <- unique(subset(propertyDataDF,select=c('county','town','beds')))
 
 # COMMAND ----------
 
-# DBTITLE 1,Remove out layers
-print(paste('Number of rows before removing out layers : ' ,nrow(propertyDataDF)))
-tmp <- propertyDataDF[FALSE,0]
-for (i in 1:nrow(Towns))
-  tmp <- rbind(tmp,remve_out_layers(subset(propertyDataDF,county == Towns[i,'county'] & town == Towns[i,'town'] & beds == Towns[i,'beds'])))
-
-propertyDataDF <- tmp
-print(paste('Number of rows before removing out layers : ' ,nrow(propertyDataDF)))
-
-
-# COMMAND ----------
-
 #library(VIM)
 #missing_values <- aggr(as.data.frame(propertyDataDF), prop = FALSE, numbers = TRUE,cex.axis = .8)
 #missing_values$missings$Percentage <- missing_values$missings$Count / nrow(propertyDataDF) * 100
@@ -72,6 +60,17 @@ print(paste('Number of rows before removing out layers : ' ,nrow(propertyDataDF)
 #df <- tmp
 #print(round(e1071::skewness(df$rent), 2))
 #plot(density(df$rent), ylab = "Frequency", sub = "Skewness")
+
+
+# COMMAND ----------
+
+print(paste('Number of rows before removing out layers : ' ,nrow(propertyDataDF)))
+tmp <- propertyDataDF[FALSE,0]
+for (i in 1:nrow(Towns))
+  tmp <- rbind(tmp,remve_out_layers(subset(propertyDataDF,county == Towns[i,'county'] & town == Towns[i,'town'] & beds == Towns[i,'beds'])))
+
+propertyDataDF <- tmp
+print(paste('Number of rows before removing out layers : ' ,nrow(propertyDataDF)))
 
 
 # COMMAND ----------
