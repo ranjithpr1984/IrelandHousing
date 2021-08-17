@@ -80,6 +80,46 @@ select * from towns where county='Donegal' and town='Letterkenny';
 
 -- COMMAND ----------
 
+select price from property_price_data_final 
+where county='Donegal' and town='Letterkenny' and beds='3'
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Non pandamic property price prediction
+select * from property_price_pred 
+where county='Sligo'
+and saleMonth between '2020-01' and '2021-08' 
+order by saleMonth
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Future property price prediction
+select * from property_price_pred 
+where county='Sligo' and saleMonth > '2021-08'
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Non pandamic property rent prediction
+select * from property_rent_pred 
+where county='Sligo'
+and NQuater between '20201' and '20213' 
+order by NQuater
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Future property rent prediction
+select * from property_rent_pred 
+where county='Sligo' and NQuater > '20213'
+order by NQuater
+
+-- COMMAND ----------
+
+-- DBTITLE 1,EMI calculator testing
+select * from property_price_data_final 
+where county='Donegal' and price=250000
+
+-- COMMAND ----------
+
 -- DBTITLE 1,Extract property_price_data_final.csv
 select price,p.town,p.county,propertyType,beds,latitude,longitude 
 from property_price_data_final p

@@ -71,6 +71,12 @@ group by website with ROLLUP
 
 -- COMMAND ----------
 
+-- DBTITLE 1,Future property price prediction
+select * from property_price_pred 
+where county='Sligo' and saleMonth > '2021-08'
+
+-- COMMAND ----------
+
 create view if not exists dublin_postal_dist as (
 select "Dublin 1" postal_dist, "Abbey St" area union all
 select "Dublin 1" postal_dist, "Amiens St" area union all

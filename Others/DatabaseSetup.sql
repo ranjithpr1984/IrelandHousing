@@ -136,7 +136,7 @@ CREATE TABLE IF NOT EXISTS `default`.`property_price_pred` (
 -- DBTITLE 1,PROPERTY_RENT_PRED
 CREATE TABLE IF NOT EXISTS `default`.`property_rent_pred` (
   `county` STRING,
-  `saleMonth` STRING,
-  `price` DOUBLE,
-  nopandemic_price DOUBLE
+  `NQuater` STRING,
+  `rent` DOUBLE,
+  nopandemic_rent DOUBLE
 ) USING delta LOCATION 'dbfs:/user/hive/warehouse/property_rent_pred';
