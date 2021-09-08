@@ -116,3 +116,11 @@ for county in counties:
   propertyDataDF = spark.createDataFrame(propertyData, schema)
   propertyDataDF.write.mode("append").partitionBy("county").saveAsTable("default.property_price_data")
   time.sleep(10)
+
+# COMMAND ----------
+
+display(propertyData)
+
+# COMMAND ----------
+
+display(propertyDataDF)

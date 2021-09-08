@@ -416,6 +416,19 @@ select sum(case when cnt = 1 then 1 else 0 end) count1_town,
 
 -- COMMAND ----------
 
+-- DBTITLE 1,Example of data with incorrect towns
+with invalid_town as(
+  select county, town from default.property_price_data
+  group by county, town having count(1) < 3
+)
+select * from default.property_price_data pd
+where exists(select 'x' from invalid_town it 
+              where it.county=pd.county
+                and it.town=pd.town)
+Order by county,town;
+
+-- COMMAND ----------
+
 -- DBTITLE 1,Delete towns data with less than 3 entries
 with invalid_town as(
   select county, town from default.property_price_data
